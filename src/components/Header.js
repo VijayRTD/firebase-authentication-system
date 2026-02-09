@@ -1,4 +1,21 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+
 export default function Header() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login"); // logout ke baad login page
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3">
@@ -67,14 +84,46 @@ export default function Header() {
               <span className="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
             </button>
 
-            <button className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <div className="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                R
-              </div>
-              <span className="hidden md:block text-sm font-semibold text-slate-700 dark:text-white">
-                Rahul
-              </span>
-            </button>
+            {/* User Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <div className="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                  R
+                </div>
+                <span className="hidden md:block text-sm font-semibold text-slate-700 dark:text-white">
+                  Vijay
+                </span>
+                <span className="material-symbols-outlined text-slate-400 text-[18px]">
+                  keyboard_arrow_down
+                </span>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 shadow-md rounded">
+                  <ul>
+                    <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                      Profile
+                    </li>
+                    <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                      Settings
+                    </li>
+                    <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+            {/* End User Dropdown */}
+
           </div>
 
         </div>

@@ -22,7 +22,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4 md:px-8">
   <div className="max-w-[400px] w-full bg-white p-6 rounded shadow-md">
     <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
 
@@ -52,7 +52,7 @@ export default function Signup() {
     </form>
 
     <p className="mt-4 text-center">
-      Already have an account? <Link to="/" className="text-blue-600 underline">Login</Link>
+      Already have an account? <Link to="/login" className="text-blue-600 underline">Login</Link>
     </p>
   </div>
 </div>

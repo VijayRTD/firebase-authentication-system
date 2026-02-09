@@ -20,7 +20,6 @@ export default function Dashboard() {
       <MainContent />
 
       <Footer />
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
