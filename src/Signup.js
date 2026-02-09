@@ -22,33 +22,40 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8">
+  <div className="max-w-[400px] w-full bg-white p-6 rounded shadow-md">
+    <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
 
-      <form onSubmit={handleSignup}>
-        <input
-          type="email"
-          placeholder="Enter email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+    <form onSubmit={handleSignup} className="space-y-4">
+      <input
+        type="email"
+        placeholder="Enter email"
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
 
-        <br /><br />
+      <input
+        type="password"
+        placeholder="Enter password"
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
 
-        <input
-          type="password"
-          placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full"
+      >
+        Signup
+      </button>
+    </form>
 
-        <br /><br />
+    <p className="mt-4 text-center">
+      Already have an account? <Link to="/" className="text-blue-600 underline">Login</Link>
+    </p>
+  </div>
+</div>
 
-        <button type="submit">Signup</button>
-      </form>
-
-      <p>Already have account?</p>
-      <Link to="/">Login</Link>
-    </div>
   );
 }
